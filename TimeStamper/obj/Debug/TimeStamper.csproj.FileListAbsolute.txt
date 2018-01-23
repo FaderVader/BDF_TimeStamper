@@ -16,3 +16,4 @@ C:\GIT_REPOS\BDF_TimeStamper\TimeStamper\obj\Debug\TimeStamper.csprojResolveAsse
 C:\GIT_REPOS\BDF_TimeStamper\TimeStamper\obj\Debug\TimeStamper.Form1.resources
 C:\GIT_REPOS\BDF_TimeStamper\TimeStamper\obj\Debug\TimeStamper.Properties.Resources.resources
 C:\GIT_REPOS\BDF_TimeStamper\TimeStamper\obj\Debug\TimeStamper.csproj.GenerateResource.Cache
+C:\GIT_REPOS\BDF_TimeStamper\TimeStamper\obj\Debug\TimeStamper.csproj.CoreCompileInputs.cache
