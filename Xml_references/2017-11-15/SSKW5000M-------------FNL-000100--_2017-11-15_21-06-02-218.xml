@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OdfBody Serial="-1" Version="-1" BDFGlobalSerial="-1" FeedFlag="P" DocumentCode="OBS-------------------------------" DocumentType="OBS_BDF_VID_LOG" BDFTimeStampUTC="2017-11-15T21:06:22+09:00" Date="2017-11-15" Time="210602218" LogicalDate="2012-07-28" BDFChannelId="MX06" BDFVideoSessionId="06" BDFTimestamp="2017-12-15T16:44:07.2103067+09:00">
+  <Log>
+    <LogId>8f9b3dfb-8c8e-4898-8e07-128609f94a42</LogId>
+    <LogSheetId>c51367b1-46fb-4b39-be61-17b6a542b146</LogSheetId>
+    <Action>UPDATE</Action>
+    <Date>2017-12-15</Date>
+    <TimeCode>16:44:07:21</TimeCode>
+    <Match>CHNvHUN</Match>
+    <Level>0</Level>
+    <RSC>SSKW5000M-------------FNL-000100--</RSC>
+    <Discipline>SSK</Discipline>
+    <Event>Test</Event>
+    <Phase>Test</Phase>
+    <Unit></Unit>
+    <LongDescription>MDS TEST</LongDescription>
+    <Keywords>
+      <Keyword>MDS TEST</Keyword>
+    </Keywords>
+    <Participants>
+      <Participant>
+        <ParticipantID>1074528</ParticipantID>
+        <GivenName>Shugen</GivenName>
+        <FamilyName>Wu</FamilyName>
+        <BiB />
+        <NOC>CHN</NOC>
+        <GenericInfo>n. 2117 WU, Shugen (CHN)</GenericInfo>
+      </Participant>
+    </Participants>
+    <FreeText></FreeText>
+  </Log>
+</OdfBody>

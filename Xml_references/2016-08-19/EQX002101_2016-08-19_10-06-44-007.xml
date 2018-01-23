@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OdfBody Serial="8056" Version="8056" BDFGlobalSerial="8056" FeedFlag="P" DocumentCode="OB0000000" DocumentType="OBS_BDF_VID_LOG" BDFTimestamp="2016-08-19T11:08:01.8913996-03:00" Date="20160819" Time="100644007" LogicalDate="20160819" BDFChannelId="MX06" BDFVideoSessionId="3646">
+  <Log>
+    <LogId>5db85277-4c44-44ba-87df-adae2b916cc9</LogId>
+    <LogSheetId>30e10e7f-1e35-4fa8-8e7e-3cd0a013bc13</LogSheetId>
+    <LogSheetName>ARC-SES-14EQ-0955-EQ12-Jumping-Ind-F-Rnds-AB-VS000843</LogSheetName>
+    <Action>UPDATE</Action>
+    <Date>2016-08-19</Date>
+    <TimeCode>10:06:44;07</TimeCode>
+    <Match></Match>
+    <Level>0</Level>
+    <RSC>EQX002101</RSC>
+    <Discipline>Equestrian</Discipline>
+    <Event>Jumping Individual</Event>
+    <Phase>Final</Phase>
+    <Unit>Round A</Unit>
+    <LongDescription>Jumping Individual Final Round A</LongDescription>
+    <Keywords>
+      <Keyword>Water obstacle</Keyword>
+    </Keywords>
+    <Participants>
+      <Participant>
+        <ParticipantID>1227366</ParticipantID>
+        <GivenName>Luciana</GivenName>
+        <FamilyName>Diniz</FamilyName>
+        <BiB>359</BiB>
+        <NOC>POR</NOC>
+        <GenericInfo>n. 359 DINIZ, Luciana (POR)</GenericInfo>
+      </Participant>
+      <Participant>
+        <ParticipantID>H009932</ParticipantID>
+        <GivenName />
+        <FamilyName />
+        <BiB />
+        <NOC />
+        <GenericInfo>Horse FIT FOR FUN 13 (POR)</GenericInfo>
+      </Participant>
+    </Participants>
+    <FreeText></FreeText>
+  </Log>
+</OdfBody>
