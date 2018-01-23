@@ -18,10 +18,13 @@ namespace TimeStamper
         public int hour;
         public int minutes;
         FileDialog dialog;
+        Process process;
+
         public Form1()
         {
             InitializeComponent();
             dialog = new OpenFileDialog();
+            process = new Process();
             PathToXmlFile = "";
         }
 
@@ -43,7 +46,7 @@ namespace TimeStamper
                 Int32.TryParse(nudHours.Value.ToString(), out hour);
                 Int32.TryParse(nudMinutes.Value.ToString(), out minutes);
 
-                Process.RecieveData(date, hour, minutes, PathToXmlFile);
+                process.ModifyTimeStamp(date, hour, minutes, PathToXmlFile);
 
             }
         }
