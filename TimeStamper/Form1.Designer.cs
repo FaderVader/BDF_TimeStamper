@@ -37,6 +37,7 @@
             this.nudMinutes = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.btnProcess = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             this.SuspendLayout();
@@ -44,8 +45,9 @@
             // txtPathToXml
             // 
             this.txtPathToXml.Location = new System.Drawing.Point(8, 22);
-            this.txtPathToXml.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPathToXml.Margin = new System.Windows.Forms.Padding(2);
             this.txtPathToXml.Name = "txtPathToXml";
+            this.txtPathToXml.ReadOnly = true;
             this.txtPathToXml.Size = new System.Drawing.Size(249, 20);
             this.txtPathToXml.TabIndex = 0;
             // 
@@ -55,14 +57,14 @@
             this.label1.Location = new System.Drawing.Point(6, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Path to xml file:";
+            this.label1.Text = "Sti til xml fil:";
             // 
             // btnBrowseFolder
             // 
             this.btnBrowseFolder.Location = new System.Drawing.Point(266, 22);
-            this.btnBrowseFolder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBrowseFolder.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowseFolder.Name = "btnBrowseFolder";
             this.btnBrowseFolder.Size = new System.Drawing.Size(38, 21);
             this.btnBrowseFolder.TabIndex = 2;
@@ -72,16 +74,16 @@
             // 
             // datePicker
             // 
-            this.datePicker.Location = new System.Drawing.Point(8, 53);
-            this.datePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.datePicker.Location = new System.Drawing.Point(8, 72);
+            this.datePicker.Margin = new System.Windows.Forms.Padding(2);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(148, 20);
             this.datePicker.TabIndex = 3;
             // 
             // nudHours
             // 
-            this.nudHours.Location = new System.Drawing.Point(9, 103);
-            this.nudHours.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudHours.Location = new System.Drawing.Point(174, 72);
+            this.nudHours.Margin = new System.Windows.Forms.Padding(2);
             this.nudHours.Maximum = new decimal(new int[] {
             23,
             0,
@@ -99,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 84);
+            this.label2.Location = new System.Drawing.Point(171, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
@@ -108,8 +110,8 @@
             // 
             // nudMinutes
             // 
-            this.nudMinutes.Location = new System.Drawing.Point(72, 103);
-            this.nudMinutes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudMinutes.Location = new System.Drawing.Point(237, 72);
+            this.nudMinutes.Margin = new System.Windows.Forms.Padding(2);
             this.nudMinutes.Maximum = new decimal(new int[] {
             59,
             0,
@@ -127,7 +129,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 84);
+            this.label3.Location = new System.Drawing.Point(235, 53);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
@@ -136,14 +138,24 @@
             // 
             // btnProcess
             // 
-            this.btnProcess.Location = new System.Drawing.Point(218, 134);
-            this.btnProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnProcess.Location = new System.Drawing.Point(8, 111);
+            this.btnProcess.Margin = new System.Windows.Forms.Padding(2);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(86, 24);
+            this.btnProcess.Size = new System.Drawing.Size(296, 47);
             this.btnProcess.TabIndex = 6;
             this.btnProcess.Text = "GO!";
             this.btnProcess.UseVisualStyleBackColor = true;
-            this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
+            this.btnProcess.Click += new System.EventHandler(this.BtnProcess_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 53);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Dato";
             // 
             // Form1
             // 
@@ -153,13 +165,14 @@
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nudMinutes);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nudHours);
             this.Controls.Add(this.datePicker);
             this.Controls.Add(this.btnBrowseFolder);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPathToXml);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "BDF Time ReStamper";
             ((System.ComponentModel.ISupportInitialize)(this.nudHours)).EndInit();
@@ -180,6 +193,7 @@
         private System.Windows.Forms.NumericUpDown nudMinutes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnProcess;
+        private System.Windows.Forms.Label label4;
     }
 }
 

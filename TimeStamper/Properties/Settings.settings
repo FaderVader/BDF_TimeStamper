@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="OutputDirectory" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">c:\Temp\</Value>
+      <Value Profile="(Default)">C:\Temp\TimeStamper\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

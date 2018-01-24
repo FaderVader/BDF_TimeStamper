@@ -36,7 +36,7 @@ namespace TimeStamper
             if (dialogResult == DialogResult.OK) { PathToXmlFile = dialog.FileName; txtPathToXml.Text = PathToXmlFile; }
         }
 
-        private void btnProcess_Click(object sender, EventArgs e)
+        private void BtnProcess_Click(object sender, EventArgs e)
         {
             if (dialog.FileName.Length > 0)
             {
