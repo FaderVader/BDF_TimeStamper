@@ -42,11 +42,13 @@ namespace TimeStamper
             {
                 // acquire values of Date, Hour and Minutes varibles from UI
                 // call to xml-reader, process file and output to new file.
-                date = datePicker.Value;
+               
                 Int32.TryParse(nudHours.Value.ToString(), out hour);
                 Int32.TryParse(nudMinutes.Value.ToString(), out minutes);
+                
+                date = datePicker.Value.ChangeDate(hour, minutes);
 
-                process.ModifyTimeStamp(date, hour, minutes, PathToXmlFile);
+                process.ModifyTimeStamp(date, PathToXmlFile); 
 
             }
         }
