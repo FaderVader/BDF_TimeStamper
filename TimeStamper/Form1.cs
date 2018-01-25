@@ -14,7 +14,7 @@ namespace TimeStamper
     {
         public string PathToXmlFile;
 
-        public DateTime date;
+        public DateTime newDate;
         public int hour;
         public int minutes;
         FileDialog dialog;
@@ -46,9 +46,9 @@ namespace TimeStamper
                 Int32.TryParse(nudHours.Value.ToString(), out hour);
                 Int32.TryParse(nudMinutes.Value.ToString(), out minutes);
                 
-                date = datePicker.Value.ChangeDate(hour, minutes);
+                newDate = datePicker.Value.ChangeDate(hour, minutes);
 
-                process.ModifyTimeStamp(date, PathToXmlFile); 
+                process.ModifyTimeStamp(newDate, PathToXmlFile); 
 
             }
         }

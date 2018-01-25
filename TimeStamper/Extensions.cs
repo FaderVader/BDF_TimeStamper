@@ -10,7 +10,7 @@ namespace TimeStamper
     {
         public static DateTime ChangeDate(this DateTime date, int hour, int minutes, int seconds = 0)
         {
-            return new DateTime(date.Year, date.Month, date.Day, hour, minutes, seconds); //, DateTimeKind.Local
+            return new DateTime(date.Year, date.Month, date.Day, hour, minutes, seconds); 
         }
     }
 }

@@ -7,41 +7,37 @@ namespace TimeStamper
 {
     public class Process
     {
-        #region field initializers
-        XDocument inDocument;
-        XDocument outDocument;
-
-        XElement body;
-        XElement log; 
-        #endregion
-
-        public void ModifyTimeStamp(DateTime date, string pathToXml) 
-        {   
-            LoadXml(pathToXml);
-            ChangeValues(date);
-            SaveXml(pathToXml);
-        }
-       
-        private void LoadXml(string pathToXml)
+        public void ModifyTimeStamp(DateTime newDate, string pathToXml)
         {
+            XElement element = ChangeValues(newDate, GetXml(pathToXml));
+            SaveXml(pathToXml, element);
+        }
+
+        private XElement GetXml(string pathToXml)
+        {
+            XDocument inDocument;
+            XElement element = new XElement("empty");
+
             try
             {
                 inDocument = XDocument.Load(pathToXml);
-                body = inDocument.Element("OdfBody");
-                log = body.Element("Log");
+                element = inDocument.Element("OdfBody");
             }
             catch (Exception)
             {
                 MessageBox.Show("Error while loading xml-file: " + pathToXml);
+                Application.Exit();
             }
+            return element;
         }
 
-        private void ChangeValues(DateTime date) 
+        private XElement ChangeValues(DateTime date, XElement body) 
         {
+            XElement log = body.Element("Log");            
+
             string time4blocks = date.Hour.ToString() + ":" + date.Minute.ToString() + ":00:00";
             string time1block = date.Hour.ToString() + date.Minute.ToString() + "00000";
             string dateYearMonthDay = date.ToString("yyyy") + "-" + date.ToString("MM") + "-" + date.ToString("dd");
-
             string bdfTimeStampUTC = dateYearMonthDay + "T" + date.TimeOfDay + "+00:00";
             string bdfTimestamp = dateYearMonthDay + "T" + date.TimeOfDay + ".0000000+00:00";
 
@@ -51,7 +47,7 @@ namespace TimeStamper
             }
             catch (Exception)
             {
-                MessageBox.Show("Old version xml - TimeStampUTC not found!");
+                MessageBox.Show("Old xml version - TimeStampUTC not found!");
             }
 
             try
@@ -66,20 +62,23 @@ namespace TimeStamper
             }
             catch (Exception e)
             {
-
                 MessageBox.Show("Error while changing values in XML-file: " + e.Message);
+                Application.Exit();
             }
+            return body;
         }
 
-        private void SaveXml(string pathToXml)
+        private void SaveXml(string pathToXml, XElement element)
         {
-            string xmlSource = Path.GetFileName(pathToXml);
-            string xmlTarget = Properties.Settings.Default.OutputDirectory + xmlSource;
+            XDocument outDocument;           
 
             try
             {
+                string xmlSource = Path.GetFileName(pathToXml);
+                string xmlTarget = Properties.Settings.Default.OutputDirectory + xmlSource;
+
                 outDocument = new XDocument(new XDeclaration("1.0", "UTF-8", null));
-                outDocument.Add(body);
+                outDocument.Add(element);
                 outDocument.Save(xmlTarget);
 
                 MessageBox.Show("Filen blev gemt som: " + xmlTarget);
