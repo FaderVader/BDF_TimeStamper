@@ -35,20 +35,13 @@ namespace TimeStamper
         {
             XElement log = body.Element("Log");            
 
+            string timeZone = Properties.Settings.Default.TimeZoneOffSet;
+
             string time4blocks = date.Hour.ToString() + ":" + date.Minute.ToString() + ":00:00";
             string time1block = date.Hour.ToString() + date.Minute.ToString() + "00000";
             string dateYearMonthDay = date.ToString("yyyy") + "-" + date.ToString("MM") + "-" + date.ToString("dd");
-            string bdfTimeStampUTC = dateYearMonthDay + "T" + date.TimeOfDay + "+00:00";
-            string bdfTimestamp = dateYearMonthDay + "T" + date.TimeOfDay + ".0000000+00:00";
+            string bdfTimestamp = dateYearMonthDay + "T" + date.TimeOfDay + $".0000000+{timeZone}";
 
-            try
-            {
-                body.Attribute("BDFTimeStampUTC").Value = bdfTimeStampUTC;       //BDFTimeStampUTC="2017-11-15T21:06:22+09:00" // date.ToUniversalTime().ToString()
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Old xml version - TimeStampUTC not found!");
-            }
 
             try
             {

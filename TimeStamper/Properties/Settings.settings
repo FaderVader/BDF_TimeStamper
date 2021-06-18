@@ -5,5 +5,8 @@
     <Setting Name="OutputDirectory" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\Temp\TimeStamper\</Value>
     </Setting>
+    <Setting Name="TimeZoneOffSet" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">02:00</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
