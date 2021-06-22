@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace TimeStamper
 {
-    public partial class Form1 : Form
+    public partial class TimeStamperGUI : Form
     {
         public string PathToXmlFile;
 
@@ -18,14 +13,15 @@ namespace TimeStamper
         public int hour;
         public int minutes;
         FileDialog dialog;
-        Process process;
+        ProcessXml process;
 
-        public Form1()
+        public TimeStamperGUI()
         {
             InitializeComponent();
             dialog = new OpenFileDialog();
-            process = new Process();
+            process = new ProcessXml();
             PathToXmlFile = "";
+            txtChannelId.Text = "DX01;MX01";
         }
 
         private void btnBrowseFolder_Click(object sender, EventArgs e)
@@ -48,8 +44,32 @@ namespace TimeStamper
                 
                 newDate = datePicker.Value.ChangeDate(hour, minutes);
 
-                process.ModifyTimeStamp(newDate, PathToXmlFile); 
+                process.ModifyTimeStamp(newDate, PathToXmlFile, txtChannelId.Text); 
+            }
+        }
 
+        private void BtnOpenExplorer_Click(object sender, EventArgs e)
+        {
+            // open folder as specified by configuration
+            string targetFolder = Properties.Settings.Default.OutputDirectory;
+
+            if (Directory.Exists(targetFolder))
+            {
+                var startInfo = new ProcessStartInfo
+                {
+                    Arguments = targetFolder,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+        private void BtnOpenSourceFile_Click(object sender, EventArgs e)
+        {
+            // open source-file with default application
+            if (dialog.FileName.Length > 0)
+            {
+                Process.Start(dialog.FileName);
             }
         }
     }

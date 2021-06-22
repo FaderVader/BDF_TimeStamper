@@ -40,5 +40,14 @@ namespace TimeStamper.Properties {
                 return ((string)(this["TimeZoneOffSet"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("OBS_BDF_VID_LOG_OBS-------------------------------")]
+        public string StaticNamePart {
+            get {
+                return ((string)(this["StaticNamePart"]));
+            }
+        }
     }
 }

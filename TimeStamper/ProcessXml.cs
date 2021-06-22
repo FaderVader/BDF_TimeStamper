@@ -1,16 +1,20 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace TimeStamper
 {
-    public class Process
+    public class ProcessXml
     {
-        public void ModifyTimeStamp(DateTime newDate, string pathToXml)
+        public void ModifyTimeStamp(DateTime newDate, string pathToXml, string channelId = "")
         {
-            XElement element = ChangeValues(newDate, GetXml(pathToXml));
-            SaveXml(pathToXml, element);
+            var sourceXml = GetXml(pathToXml);
+            string updatedName = GenerateUpdatedFileName(newDate, sourceXml);
+            XElement element = ChangeValues(newDate, sourceXml, channelId);
+
+            SaveXml(updatedName, element);
         }
 
         private XElement GetXml(string pathToXml)
@@ -31,7 +35,7 @@ namespace TimeStamper
             return element;
         }
 
-        private XElement ChangeValues(DateTime date, XElement body) 
+        private XElement ChangeValues(DateTime date, XElement body, string channelId = "") 
         {
             XElement log = body.Element("Log");            
 
@@ -50,8 +54,10 @@ namespace TimeStamper
                 body.Attribute("Time").Value = time1block;                       // Time = "210602218"
                 body.Attribute("LogicalDate").Value = dateYearMonthDay;          // LogicalDate="2012-07-28"
 
+                body.Attribute("BDFChannelId").Value = channelId;                // BDFChannelIDd="DX09;MX03"
+
                 log.Element("Date").Value = dateYearMonthDay;                    // 2017-12-15
-                log.Element("TimeCode").Value = time4blocks;                     //16:44:07:21
+                log.Element("TimeCode").Value = time4blocks;                     // 16:44:07:21
             }
             catch (Exception e)
             {
@@ -80,6 +86,32 @@ namespace TimeStamper
             {
                 MessageBox.Show("Error While saving XML-file: " + e.Message);
             }
+        }
+
+        private string GenerateUpdatedFileName(DateTime newDate, XElement sourceXml)
+        {
+            // name-template: 2018-02-14-14-00-00-015_OBS-------------------------------_OBS_BDF_VID_LOG_5649.xml
+            string staticPart = Properties.Settings.Default.StaticNamePart;
+
+            // set minimum length and pad if required
+            string serial = sourceXml.Attribute("Serial").Value.PadLeft(5, '0');
+            string version = sourceXml.Attribute("Version").Value.PadLeft(5, '0');            
+
+            // format date-string
+            string datePart = newDate.ToString("yyyyMMddHHmmssfff");
+            string fileExt = ".xml";
+
+            var sb = new StringBuilder();
+            sb.Append(datePart);
+            sb.Append("_");
+            sb.Append(version);
+            sb.Append("_");
+            sb.Append(serial);
+            sb.Append("_");
+            sb.Append(staticPart);
+            sb.Append(fileExt);
+
+            return sb.ToString();
         }
 
     }
