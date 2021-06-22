@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -8,11 +10,90 @@ namespace TimeStamper
 {
     public class ProcessXml
     {
-        public void ModifyTimeStamp(DateTime newDate, string pathToXml, string channelId = "")
+        private readonly string xmlSourcesFolder;
+
+        public List<string> EventList { get; set; } = new List<string>();
+        private Dictionary<string, List<XElement>> EventDictionary = new Dictionary<string, List<XElement>>();
+        TimeStamperGUI timeStamperGUI;
+
+        public ProcessXml(string xmlSourcesFolder, TimeStamperGUI gui)
         {
-            var sourceXml = GetXml(pathToXml);
-            string updatedName = GenerateUpdatedFileName(newDate, sourceXml);
-            XElement element = ChangeValues(newDate, sourceXml, channelId);
+            this.xmlSourcesFolder = xmlSourcesFolder;
+
+            if (!Directory.Exists(xmlSourcesFolder))
+            {
+                throw new FileNotFoundException("Cannot find folder!");
+            }
+
+            this.timeStamperGUI = gui;
+        }
+
+        public List<string> BuildSourceFileList()
+        {
+            // get all .xml files from source-folder
+            var xmlFiles = Directory.GetFiles(xmlSourcesFolder, "*.xml").ToList();
+
+            // parse all - build list of unique events
+            var fileCount = xmlFiles.Count;
+
+            xmlFiles.ForEach(xmlFile =>
+            {
+                var element = GetXml(xmlFile);
+                if (element != null)
+                {
+                    XElement log = element.Element("Log");
+                    var logSheetId = log.Element("LogSheetId").Value;
+
+                    if (!EventDictionary.ContainsKey(logSheetId))
+                    {
+                        EventDictionary.Add(logSheetId, new List<XElement> { element });
+                    }
+                    else
+                    {
+                        var list = new List<XElement>();
+                        EventDictionary.TryGetValue(logSheetId, out list);
+                        list.Add(element);
+                        EventDictionary[logSheetId] = list;
+                    }
+                }
+                
+            });
+
+            // process resulting list
+            return EventDictionary.Keys.ToList();
+        }
+
+        public void ShowFirstFile(string selectedSet)
+        {
+            var firstFile = EventDictionary[selectedSet].FirstOrDefault();
+            var text = firstFile.ToString();
+
+            MessageBox.Show(text);
+        }
+
+        public void ModifySet(DateTime newStartDate, string selectedSet, string channelId = "", int maxFiles = 100, int intervalInMin = 2)
+        {
+            var xmlFilesInSet = EventDictionary[selectedSet];
+            var timeOffSet = newStartDate;
+
+            // if MaxNumberOfFiles == 0, remove limit
+            if (maxFiles == 0) maxFiles = xmlFilesInSet.Count;
+            var counter = 1;
+
+            foreach (var element in xmlFilesInSet)
+            {
+                ModifyItem(timeOffSet, element, channelId);
+                timeOffSet = timeOffSet.AddMinutes(intervalInMin);
+                if (++counter > maxFiles) break;
+            }
+
+            MessageBox.Show("Completed modifying set.");
+        }
+
+        private void ModifyItem(DateTime newDate, XElement entry, string channelId = "")
+        {
+            string updatedName = GenerateUpdatedFileName(newDate, entry);
+            XElement element = ChangeValues(newDate, entry, channelId);
 
             SaveXml(updatedName, element);
         }
@@ -79,8 +160,6 @@ namespace TimeStamper
                 outDocument = new XDocument(new XDeclaration("1.0", "UTF-8", null));
                 outDocument.Add(element);
                 outDocument.Save(xmlTarget);
-
-                MessageBox.Show("Filen blev gemt som: " + xmlTarget);
             }
             catch (Exception e)
             {
@@ -113,6 +192,5 @@ namespace TimeStamper
 
             return sb.ToString();
         }
-
     }
 }

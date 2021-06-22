@@ -8,10 +8,14 @@ namespace TimeStamper
     public partial class TimeStamperGUI : Form
     {
         public string PathToXmlFile;
+        string selectedSet;
 
-        public DateTime newDate;
-        public int hour;
-        public int minutes;
+        DateTime newDate;
+        int hour;
+        int minutes;
+        int maxFiles;
+        int intervalInMin;
+
         FileDialog dialog;
         ProcessXml process;
 
@@ -19,9 +23,27 @@ namespace TimeStamper
         {
             InitializeComponent();
             dialog = new OpenFileDialog();
-            process = new ProcessXml();
+
+            btnProcess.Enabled = false;
+            btnSelectEvent.Enabled = false;
+            btnShowFirstItem.Enabled = false;
+
+            nudMaxFiles.Value = 100;
+            nudIntervalInMin.Value = 2;
+
             PathToXmlFile = "";
             txtChannelId.Text = "DX01;MX01";
+        }
+
+        private void AcceptPath_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPathToXml.Text)) return;
+            var sourceFolderPath = Path.GetDirectoryName(txtPathToXml.Text); 
+
+            process = new ProcessXml(sourceFolderPath, this);
+            lstEvents.DataSource = process.BuildSourceFileList();
+
+            btnSelectEvent.Enabled = true;
         }
 
         private void btnBrowseFolder_Click(object sender, EventArgs e)
@@ -34,17 +56,20 @@ namespace TimeStamper
 
         private void BtnProcess_Click(object sender, EventArgs e)
         {
-            if (dialog.FileName.Length > 0)
+            if (selectedSet?.Length > 0)
             {
                 // acquire values of Date, Hour and Minutes varibles from UI
                 // call to xml-reader, process file and output to new file.
                
                 Int32.TryParse(nudHours.Value.ToString(), out hour);
                 Int32.TryParse(nudMinutes.Value.ToString(), out minutes);
-                
+
+                Int32.TryParse(nudMaxFiles.Value.ToString(), out maxFiles);
+                Int32.TryParse(nudIntervalInMin.Value.ToString(), out intervalInMin);
+
                 newDate = datePicker.Value.ChangeDate(hour, minutes);
 
-                process.ModifyTimeStamp(newDate, PathToXmlFile, txtChannelId.Text); 
+                process.ModifySet(newDate, selectedSet, txtChannelId.Text, maxFiles, intervalInMin); 
             }
         }
 
@@ -64,13 +89,21 @@ namespace TimeStamper
             }
         }
 
-        private void BtnOpenSourceFile_Click(object sender, EventArgs e)
+        private void btnSelectEvent_Click(object sender, EventArgs e)
         {
-            // open source-file with default application
-            if (dialog.FileName.Length > 0)
+            selectedSet = (string)lstEvents.SelectedItem;
+
+            if (selectedSet?.Length > 0)
             {
-                Process.Start(dialog.FileName);
+                // activate go-button
+                btnProcess.Enabled = true;
+                btnShowFirstItem.Enabled = true;
             }
+        }
+
+        private void btnShowFirstItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
