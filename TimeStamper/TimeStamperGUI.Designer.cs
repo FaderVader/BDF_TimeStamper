@@ -41,9 +41,21 @@
             this.lbl_ChannelId = new System.Windows.Forms.Label();
             this.txtChannelId = new System.Windows.Forms.TextBox();
             this.btnOpenTarget = new System.Windows.Forms.Button();
-            this.btnOpenFile = new System.Windows.Forms.Button();
+            this.btnAcceptPath = new System.Windows.Forms.Button();
+            this.Events = new System.Windows.Forms.Label();
+            this.lstEvents = new System.Windows.Forms.ListBox();
+            this.btnSelectEvent = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.nudMaxFiles = new System.Windows.Forms.NumericUpDown();
+            this.nudIntervalInMin = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnShowFirstItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIntervalInMin)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPathToXml
@@ -78,7 +90,7 @@
             // 
             // datePicker
             // 
-            this.datePicker.Location = new System.Drawing.Point(8, 110);
+            this.datePicker.Location = new System.Drawing.Point(8, 308);
             this.datePicker.Margin = new System.Windows.Forms.Padding(2);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(148, 20);
@@ -86,7 +98,7 @@
             // 
             // nudHours
             // 
-            this.nudHours.Location = new System.Drawing.Point(174, 110);
+            this.nudHours.Location = new System.Drawing.Point(174, 308);
             this.nudHours.Margin = new System.Windows.Forms.Padding(2);
             this.nudHours.Maximum = new decimal(new int[] {
             23,
@@ -105,7 +117,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 91);
+            this.label2.Location = new System.Drawing.Point(171, 289);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
@@ -114,7 +126,7 @@
             // 
             // nudMinutes
             // 
-            this.nudMinutes.Location = new System.Drawing.Point(237, 110);
+            this.nudMinutes.Location = new System.Drawing.Point(237, 308);
             this.nudMinutes.Margin = new System.Windows.Forms.Padding(2);
             this.nudMinutes.Maximum = new decimal(new int[] {
             59,
@@ -133,7 +145,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(235, 91);
+            this.label3.Location = new System.Drawing.Point(235, 289);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
@@ -142,7 +154,7 @@
             // 
             // btnProcess
             // 
-            this.btnProcess.Location = new System.Drawing.Point(8, 199);
+            this.btnProcess.Location = new System.Drawing.Point(8, 465);
             this.btnProcess.Margin = new System.Windows.Forms.Padding(2);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(296, 47);
@@ -154,17 +166,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 91);
+            this.label4.Location = new System.Drawing.Point(6, 289);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Date";
+            this.label4.Text = "Set new date";
             // 
             // lbl_ChannelId
             // 
             this.lbl_ChannelId.AutoSize = true;
-            this.lbl_ChannelId.Location = new System.Drawing.Point(5, 143);
+            this.lbl_ChannelId.Location = new System.Drawing.Point(5, 341);
             this.lbl_ChannelId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_ChannelId.Name = "lbl_ChannelId";
             this.lbl_ChannelId.Size = new System.Drawing.Size(91, 13);
@@ -173,7 +185,7 @@
             // 
             // txtChannelId
             // 
-            this.txtChannelId.Location = new System.Drawing.Point(8, 158);
+            this.txtChannelId.Location = new System.Drawing.Point(8, 356);
             this.txtChannelId.Margin = new System.Windows.Forms.Padding(2);
             this.txtChannelId.Name = "txtChannelId";
             this.txtChannelId.ReadOnly = true;
@@ -182,7 +194,7 @@
             // 
             // btnOpenTarget
             // 
-            this.btnOpenTarget.Location = new System.Drawing.Point(9, 257);
+            this.btnOpenTarget.Location = new System.Drawing.Point(9, 523);
             this.btnOpenTarget.Name = "btnOpenTarget";
             this.btnOpenTarget.Size = new System.Drawing.Size(101, 23);
             this.btnOpenTarget.TabIndex = 9;
@@ -190,22 +202,134 @@
             this.btnOpenTarget.UseVisualStyleBackColor = true;
             this.btnOpenTarget.Click += new System.EventHandler(this.BtnOpenExplorer_Click);
             // 
-            // btnOpenFile
+            // btnAcceptPath
             // 
-            this.btnOpenFile.Location = new System.Drawing.Point(8, 48);
-            this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(102, 23);
-            this.btnOpenFile.TabIndex = 10;
-            this.btnOpenFile.Text = "View FileContents";
-            this.btnOpenFile.UseVisualStyleBackColor = true;
-            this.btnOpenFile.Click += new System.EventHandler(this.BtnOpenSourceFile_Click);
+            this.btnAcceptPath.Location = new System.Drawing.Point(229, 47);
+            this.btnAcceptPath.Name = "btnAcceptPath";
+            this.btnAcceptPath.Size = new System.Drawing.Size(75, 23);
+            this.btnAcceptPath.TabIndex = 11;
+            this.btnAcceptPath.Text = "Set Path";
+            this.btnAcceptPath.UseVisualStyleBackColor = true;
+            this.btnAcceptPath.Click += new System.EventHandler(this.AcceptPath_Click);
             // 
-            // Form1
+            // Events
+            // 
+            this.Events.AutoSize = true;
+            this.Events.Location = new System.Drawing.Point(6, 84);
+            this.Events.Name = "Events";
+            this.Events.Size = new System.Drawing.Size(116, 13);
+            this.Events.TabIndex = 12;
+            this.Events.Text = "Events Found in Folder";
+            // 
+            // lstEvents
+            // 
+            this.lstEvents.FormattingEnabled = true;
+            this.lstEvents.Location = new System.Drawing.Point(8, 101);
+            this.lstEvents.Name = "lstEvents";
+            this.lstEvents.Size = new System.Drawing.Size(296, 134);
+            this.lstEvents.TabIndex = 13;
+            // 
+            // btnSelectEvent
+            // 
+            this.btnSelectEvent.Location = new System.Drawing.Point(230, 241);
+            this.btnSelectEvent.Name = "btnSelectEvent";
+            this.btnSelectEvent.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectEvent.TabIndex = 14;
+            this.btnSelectEvent.Text = "Select";
+            this.btnSelectEvent.UseVisualStyleBackColor = true;
+            this.btnSelectEvent.Click += new System.EventHandler(this.btnSelectEvent_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(105, 52);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(118, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Set path to populate list";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 391);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Max number of files";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 428);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(132, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Interval between files (min)";
+            // 
+            // nudMaxFiles
+            // 
+            this.nudMaxFiles.Location = new System.Drawing.Point(108, 389);
+            this.nudMaxFiles.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudMaxFiles.Name = "nudMaxFiles";
+            this.nudMaxFiles.Size = new System.Drawing.Size(126, 20);
+            this.nudMaxFiles.TabIndex = 18;
+            // 
+            // nudIntervalInMin
+            // 
+            this.nudIntervalInMin.Location = new System.Drawing.Point(143, 426);
+            this.nudIntervalInMin.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudIntervalInMin.Name = "nudIntervalInMin";
+            this.nudIntervalInMin.Size = new System.Drawing.Size(91, 20);
+            this.nudIntervalInMin.TabIndex = 19;
+            this.nudIntervalInMin.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(241, 391);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "(0 = no limit)";
+            // 
+            // btnShowFirstItem
+            // 
+            this.btnShowFirstItem.Location = new System.Drawing.Point(9, 241);
+            this.btnShowFirstItem.Name = "btnShowFirstItem";
+            this.btnShowFirstItem.Size = new System.Drawing.Size(101, 23);
+            this.btnShowFirstItem.TabIndex = 21;
+            this.btnShowFirstItem.Text = "Show first in set";
+            this.btnShowFirstItem.UseVisualStyleBackColor = true;
+            this.btnShowFirstItem.Click += new System.EventHandler(this.btnShowFirstItem_Click);
+            // 
+            // TimeStamperGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 288);
-            this.Controls.Add(this.btnOpenFile);
+            this.ClientSize = new System.Drawing.Size(317, 554);
+            this.Controls.Add(this.btnShowFirstItem);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.nudIntervalInMin);
+            this.Controls.Add(this.nudMaxFiles);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnSelectEvent);
+            this.Controls.Add(this.lstEvents);
+            this.Controls.Add(this.Events);
+            this.Controls.Add(this.btnAcceptPath);
             this.Controls.Add(this.btnOpenTarget);
             this.Controls.Add(this.txtChannelId);
             this.Controls.Add(this.lbl_ChannelId);
@@ -220,10 +344,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPathToXml);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
+            this.Name = "TimeStamperGUI";
             this.Text = "BDF Time ReStamper";
             ((System.ComponentModel.ISupportInitialize)(this.nudHours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIntervalInMin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +370,17 @@
         private System.Windows.Forms.Label lbl_ChannelId;
         private System.Windows.Forms.TextBox txtChannelId;
         private System.Windows.Forms.Button btnOpenTarget;
-        private System.Windows.Forms.Button btnOpenFile;
+        private System.Windows.Forms.Button btnAcceptPath;
+        private System.Windows.Forms.Label Events;
+        private System.Windows.Forms.ListBox lstEvents;
+        private System.Windows.Forms.Button btnSelectEvent;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown nudMaxFiles;
+        private System.Windows.Forms.NumericUpDown nudIntervalInMin;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnShowFirstItem;
     }
 }
 
