@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeStamper", "TimeStamper\TimeStamper.csproj", "{12DF77FA-6713-4E85-8FC9-EFE58C78CD41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileFeeder", "FileFeeder\FileFeeder.csproj", "{CF8963BC-DBDA-4FC6-89CD-A9F242071A20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{12DF77FA-6713-4E85-8FC9-EFE58C78CD41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12DF77FA-6713-4E85-8FC9-EFE58C78CD41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12DF77FA-6713-4E85-8FC9-EFE58C78CD41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8963BC-DBDA-4FC6-89CD-A9F242071A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8963BC-DBDA-4FC6-89CD-A9F242071A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8963BC-DBDA-4FC6-89CD-A9F242071A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8963BC-DBDA-4FC6-89CD-A9F242071A20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {802BAD40-5E69-4048-BED4-D9FF0A168544}
 	EndGlobalSection
 EndGlobal
