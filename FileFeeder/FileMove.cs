@@ -64,10 +64,22 @@ namespace FileFeeder
                     if (currentTime > time)
                     {
                         // copy file to target
-                        var sourcePath = $"{Properties.Settings.Default.SourceFolder}\\{fileName}";
-                        var newPath = $"{Properties.Settings.Default.TargetRootFolder}\\{year}-{month}-{days}\\{hours}\\{fileName}";
-                        Directory.CreateDirectory($"{Properties.Settings.Default.TargetRootFolder}\\{year}-{month}-{days}\\{hours}");
-                        File.Copy(sourcePath, newPath);
+                        var sourcePath = $"{sourceFolder}\\{fileName}";
+                        var newPath = $"{targetRootFolder}\\{year}-{month}-{days}\\{hours}\\{fileName}";
+                        Directory.CreateDirectory($"{targetRootFolder}\\{year}-{month}-{days}\\{hours}");
+
+                        try
+                        {
+                            File.Copy(sourcePath, newPath);
+                        }
+                        catch (IOException)
+                        {
+                            // ignore and continue;
+                        }
+                        catch (Exception e)
+                        {
+                            throw;
+                        }
 
                         // add to black-list
                         completedFiles.Add(fileName);
