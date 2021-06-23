@@ -49,13 +49,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.nudMaxFiles = new System.Windows.Forms.NumericUpDown();
-            this.nudIntervalInMin = new System.Windows.Forms.NumericUpDown();
+            this.nudIntervalInSecs = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.btnShowFirstItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudIntervalInMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIntervalInSecs)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPathToXml
@@ -262,9 +262,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 428);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(132, 13);
+            this.label7.Size = new System.Drawing.Size(133, 13);
             this.label7.TabIndex = 17;
-            this.label7.Text = "Interval between files (min)";
+            this.label7.Text = "Interval between files (sec)";
             // 
             // nudMaxFiles
             // 
@@ -280,16 +280,21 @@
             // 
             // nudIntervalInMin
             // 
-            this.nudIntervalInMin.Location = new System.Drawing.Point(143, 426);
-            this.nudIntervalInMin.Minimum = new decimal(new int[] {
+            this.nudIntervalInSecs.Location = new System.Drawing.Point(143, 426);
+            this.nudIntervalInSecs.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudIntervalInSecs.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nudIntervalInMin.Name = "nudIntervalInMin";
-            this.nudIntervalInMin.Size = new System.Drawing.Size(91, 20);
-            this.nudIntervalInMin.TabIndex = 19;
-            this.nudIntervalInMin.Value = new decimal(new int[] {
+            this.nudIntervalInSecs.Name = "nudIntervalInMin";
+            this.nudIntervalInSecs.Size = new System.Drawing.Size(91, 20);
+            this.nudIntervalInSecs.TabIndex = 19;
+            this.nudIntervalInSecs.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -321,7 +326,7 @@
             this.ClientSize = new System.Drawing.Size(317, 554);
             this.Controls.Add(this.btnShowFirstItem);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.nudIntervalInMin);
+            this.Controls.Add(this.nudIntervalInSecs);
             this.Controls.Add(this.nudMaxFiles);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -349,7 +354,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudHours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudIntervalInMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIntervalInSecs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,7 +383,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nudMaxFiles;
-        private System.Windows.Forms.NumericUpDown nudIntervalInMin;
+        private System.Windows.Forms.NumericUpDown nudIntervalInSecs;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnShowFirstItem;
     }

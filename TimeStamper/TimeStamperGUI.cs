@@ -14,7 +14,7 @@ namespace TimeStamper
         int hour;
         int minutes;
         int maxFiles;
-        int intervalInMin;
+        int intervalInSecs;
 
         FileDialog dialog;
         ProcessXml process;
@@ -28,8 +28,8 @@ namespace TimeStamper
             btnSelectEvent.Enabled = false;
             btnShowFirstItem.Enabled = false;
 
-            nudMaxFiles.Value = 100;
-            nudIntervalInMin.Value = 2;
+            nudMaxFiles.Value = 250;
+            nudIntervalInSecs.Value = 30;
 
             PathToXmlFile = "";
             txtChannelId.Text = "DX01;MX01";
@@ -65,11 +65,11 @@ namespace TimeStamper
                 Int32.TryParse(nudMinutes.Value.ToString(), out minutes);
 
                 Int32.TryParse(nudMaxFiles.Value.ToString(), out maxFiles);
-                Int32.TryParse(nudIntervalInMin.Value.ToString(), out intervalInMin);
+                Int32.TryParse(nudIntervalInSecs.Value.ToString(), out intervalInSecs);
 
                 newDate = datePicker.Value.ChangeDate(hour, minutes);
 
-                process.ModifySet(newDate, selectedSet, txtChannelId.Text, maxFiles, intervalInMin); 
+                process.ModifySet(newDate, selectedSet, txtChannelId.Text, maxFiles, intervalInSecs); 
             }
         }
 
@@ -103,7 +103,12 @@ namespace TimeStamper
 
         private void btnShowFirstItem_Click(object sender, EventArgs e)
         {
+            selectedSet = (string)lstEvents.SelectedItem;
 
+            if (selectedSet?.Length > 0)
+            {
+                process.ShowFirstFile(selectedSet);
+            }
         }
     }
 }

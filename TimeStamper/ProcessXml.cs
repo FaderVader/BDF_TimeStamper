@@ -71,7 +71,7 @@ namespace TimeStamper
             MessageBox.Show(text);
         }
 
-        public void ModifySet(DateTime newStartDate, string selectedSet, string channelId = "", int maxFiles = 100, int intervalInMin = 2)
+        public void ModifySet(DateTime newStartDate, string selectedSet, string channelId = "", int maxFiles = 100, int intervalInSecs = 2)
         {
             var xmlFilesInSet = EventDictionary[selectedSet];
             var timeOffSet = newStartDate;
@@ -83,7 +83,7 @@ namespace TimeStamper
             foreach (var element in xmlFilesInSet)
             {
                 ModifyItem(timeOffSet, element, channelId);
-                timeOffSet = timeOffSet.AddMinutes(intervalInMin);
+                timeOffSet = timeOffSet.AddSeconds(intervalInSecs);
                 if (++counter > maxFiles) break;
             }
 
@@ -122,11 +122,14 @@ namespace TimeStamper
 
             string timeZone = Properties.Settings.Default.TimeZoneOffSet;
 
-            string time4blocks = date.Hour.ToString() + ":" + date.Minute.ToString() + ":00:00";
-            string time1block = date.Hour.ToString() + date.Minute.ToString() + "00000";
+            string hours = date.Hour.ToString().PadLeft(2, '0');
+            string mins = date.Minute.ToString().PadLeft(2, '0');
+            string secs = date.Second.ToString().PadLeft(2, '0');
+
+            string time4blocks = hours + ":" + mins + ":" + secs + ":00";
+            string time1block = hours + mins + secs + "000";
             string dateYearMonthDay = date.ToString("yyyy") + "-" + date.ToString("MM") + "-" + date.ToString("dd");
             string bdfTimestamp = dateYearMonthDay + "T" + date.TimeOfDay + $".0000000+{timeZone}";
-
 
             try
             {
